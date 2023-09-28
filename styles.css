@@ -16,3 +16,11 @@ body {
 .content {
   background-color: #FAF9F6;
 }
+
+#addDialog {
+  padding: 0;
+}
+
+#preventClose {
+  padding: 1rem;
+}

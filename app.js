@@ -1,5 +1,7 @@
 const addBookBtn = document.getElementById("showDialog");
+const preventClose = document.getElementById("preventClose");
 const bookDialog = document.getElementById("addDialog");
+const submitBtn = bookDialog.querySelector("#submitBtn");
 
 const myLibrary = [];
 
@@ -14,5 +16,24 @@ function addBookToLibrary() {
 }
 
 addBookBtn.addEventListener("click", () => {
-  bookDialog.showModal()
+  bookDialog.showModal();
+});
+
+bookDialog.addEventListener("click", () => {
+  bookDialog.close();
+});
+
+preventClose.addEventListener('click', (event) => {
+  event.stopPropagation();
+});
+
+bookDialog.addEventListener("close", (e) => {
+  document.querySelectorAll("input")[0].value = "";
+  document.querySelectorAll("input")[1].value = "";
+  document.querySelectorAll("input")[2].value = "";
+  document.querySelectorAll("input")[3].checked = false;
+});
+
+submitBtn.addEventListener("click", (event) => {
+  event.preventDefault();
 });

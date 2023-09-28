@@ -18,15 +18,17 @@
       </div>
     </div>
     <dialog id="addDialog">
-      <form>
-        <h2>Add new book</h2>
-        <input type="text" placeholder="Title">
-        <input type="text" placeholder="Author">
-        <input type="number" min="1" placeholder="Pages">
-        <label for="readCheck">Have you read it?</label>
-        <input type="checkbox" id="readCheck">
-        <button id="submitBtn" value="default">Submit</button>
-      </form>
+      <div id="preventClose">
+        <form>
+          <h2>Add new book</h2>
+          <input id="text" type="text" placeholder="Title" value="">
+          <input id="text" type="text" placeholder="Author" value="">
+          <input type="number" min="1" placeholder="Pages">
+          <label for="readCheck">Have you read it?</label>
+          <input type="checkbox" id="readCheck">
+          <button id="submitBtn" value="default">Submit</button>
+        </form>
+      </div>
     </dialog>
     <script src="./app.js" async defer></script>
   </body>
