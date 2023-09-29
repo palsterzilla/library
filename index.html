@@ -15,18 +15,27 @@
       </div>
       <div class="content">
         <button type="button" id="showDialog">+ Add Book</button>
+        <div class="wrapper">
+          <div class="card">
+            <p>"The Hobbit"</p>
+            <p>whoever</p>
+            <p>1 pages</p>
+            <button type="button">Not read</button>
+            <button type="button">Remove</button>
+          </div>
+        </div>
       </div>
     </div>
     <dialog id="addDialog">
       <div id="preventClose">
-        <form>
+        <form id="book-form">
           <h2>Add new book</h2>
-          <input id="text" type="text" placeholder="Title" value="">
-          <input id="text" type="text" placeholder="Author" value="">
-          <input type="number" min="1" placeholder="Pages">
+          <input type="text" placeholder="Title" required>
+          <input type="text" placeholder="Author" required>
+          <input type="number" min="1" placeholder="Pages" required>
           <label for="readCheck">Have you read it?</label>
           <input type="checkbox" id="readCheck">
-          <button id="submitBtn" value="default">Submit</button>
+          <button type="submit" id="submitBtn" value="default">Submit</button>
         </form>
       </div>
     </dialog>
