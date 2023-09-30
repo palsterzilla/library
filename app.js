@@ -73,10 +73,29 @@ bookDialog.addEventListener("close", () => {
   inputAuthor.value = "";
   inputPages.value = "";
   readCheck.checked = false;
+  submitBtn.disabled = true;
 });
 
 submitBtn.addEventListener("click", (event) => {
-  event.preventDefault();  
+  event.preventDefault();
   addBookToLibrary();
   bookDialog.close();
 });
+
+inputTitle.addEventListener("keyup", enableSubmit);
+inputAuthor.addEventListener("keyup", enableSubmit);
+inputPages.addEventListener("change", enableSubmit);
+
+function enableSubmit(){
+  let inputs = document.getElementsByClassName("required");
+
+  let isValid = true;
+  for (let i = 0; i < inputs.length; i++){
+    let changedInput = inputs[i];
+    if (changedInput.value.trim() === "" || changedInput.value === null){
+      isValid = false;
+      break;
+    }
+  }
+  submitBtn.disabled = !isValid;
+}

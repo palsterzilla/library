@@ -30,12 +30,12 @@
       <div id="preventClose">
         <form id="book-form">
           <h2>Add new book</h2>
-          <input id="title" type="text" placeholder="Title" required>
-          <input id="author" type="text" placeholder="Author" required>
-          <input id="pages" type="number" min="1" placeholder="Pages" required>
+          <input class="required" id="title" type="text" placeholder="Title">
+          <input class="required" id="author" type="text" placeholder="Author">
+          <input class="required" id="pages" type="number" min="1" placeholder="Pages">
           <label for="readCheck">Have you read it?</label>
           <input type="checkbox" id="readCheck">
-          <button type="submit" id="submitBtn" value="default">Submit</button>
+          <button type="submit" id="submitBtn" value="default" disabled>Submit</button>
         </form>
       </div>
     </dialog>
