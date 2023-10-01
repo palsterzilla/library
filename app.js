@@ -16,6 +16,9 @@ function Book(title, author, pages, readCheck) {
   this.author = author;
   this.pages = pages;
   this.readCheck = readCheck;
+  this.toggleRead = function() {
+    this.readCheck = !this.readCheck;
+  };
 }
 
 function addBookToLibrary() {
@@ -46,7 +49,10 @@ function addBookToLibrary() {
     } else {
       btnRead.textContent = "Not read";
     }
+
     btnRead.setAttribute("type", "button");
+    btnRead.setAttribute("id", "readBtn");
+    btnRead.setAttribute("value", i);
 
     btnRemove.textContent = "Remove";
     btnRemove.setAttribute("type", "button");
@@ -54,6 +60,20 @@ function addBookToLibrary() {
     cardWrapper.append(div);
     div.append(paraTitle, paraAuthor, paraPages, btnRead, btnRemove);
   }
+}
+
+function enableSubmit(){
+  const inputs = document.getElementsByClassName("required");
+
+  let isValid = true;
+  for (let i = 0; i < inputs.length; i++){
+    const changedInput = inputs[i];
+    if (changedInput.value.trim() === "" || changedInput.value === null){
+      isValid = false;
+      break;
+    }
+  }
+  submitBtn.disabled = !isValid;
 }
 
 addBookBtn.addEventListener("click", () => {
@@ -86,16 +106,18 @@ inputTitle.addEventListener("keyup", enableSubmit);
 inputAuthor.addEventListener("keyup", enableSubmit);
 inputPages.addEventListener("change", enableSubmit);
 
-function enableSubmit(){
-  let inputs = document.getElementsByClassName("required");
+cardWrapper.addEventListener("click", function(event) {
+  const readBtn = event.target.closest("#readBtn");
+  
+  if (readBtn) {
+    const bookIndex = myLibrary[readBtn.value];
 
-  let isValid = true;
-  for (let i = 0; i < inputs.length; i++){
-    let changedInput = inputs[i];
-    if (changedInput.value.trim() === "" || changedInput.value === null){
-      isValid = false;
-      break;
+    bookIndex.toggleRead();
+  
+    if (readBtn.textContent == "Read") {
+      readBtn.textContent = "Not read";
+    } else {
+      readBtn.textContent = "Read";
     }
   }
-  submitBtn.disabled = !isValid;
-}
+})
