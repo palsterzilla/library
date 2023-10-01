@@ -39,7 +39,8 @@ function addBookToLibrary() {
   );
 
   for (let i = 0; i < myLibrary.length; i++) {
-    div.classList.add("card");
+    div.setAttribute("class", "card");
+    div.setAttribute("id", i);
     paraTitle.textContent = `"${myLibrary[i].title}"`;
     paraAuthor.textContent = myLibrary[i].author;
     paraPages.textContent = `${myLibrary[i].pages} pages`;
@@ -52,10 +53,10 @@ function addBookToLibrary() {
 
     btnRead.setAttribute("type", "button");
     btnRead.setAttribute("id", "readBtn");
-    btnRead.setAttribute("value", i);
 
     btnRemove.textContent = "Remove";
     btnRemove.setAttribute("type", "button");
+    btnRemove.setAttribute("id", "removeBtn");
     
     cardWrapper.append(div);
     div.append(paraTitle, paraAuthor, paraPages, btnRead, btnRemove);
@@ -108,16 +109,30 @@ inputPages.addEventListener("change", enableSubmit);
 
 cardWrapper.addEventListener("click", function(event) {
   const readBtn = event.target.closest("#readBtn");
-  
-  if (readBtn) {
-    const bookIndex = myLibrary[readBtn.value];
+  const removeBtn = event.target.closest("#removeBtn");
+  const divCard = event.target.closest(".card");
 
-    bookIndex.toggleRead();
-  
+  if (readBtn) {
+    const index = divCard.id;
+    
+    myLibrary[index].toggleRead();
+    
     if (readBtn.textContent == "Read") {
       readBtn.textContent = "Not read";
     } else {
       readBtn.textContent = "Read";
     }
+
+  } else if (removeBtn) {
+      const index = divCard.id;
+      
+      myLibrary.splice(index, 1);
+      divCard.remove()
+      
+      updatePage();
   }
 })
+
+function updatePage() {
+  // update every div id after removal
+}
