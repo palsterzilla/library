@@ -47,8 +47,10 @@ function addBookToLibrary() {
 
     if (readCheck.checked) {
       btnRead.textContent = "Read";
+      btnRead.setAttribute("class", "read")
     } else {
       btnRead.textContent = "Not read";
+      btnRead.setAttribute("class", "unread")
     }
 
     btnRead.setAttribute("type", "button");
@@ -126,8 +128,12 @@ cardWrapper.addEventListener("click", function(event) {
     myLibrary[index].toggleRead();
     
     if (readBtn.textContent == "Read") {
+      readBtn.classList.remove("read")
+      readBtn.classList.add("unread")
       readBtn.textContent = "Not read";
     } else {
+      readBtn.classList.remove("unread")
+      readBtn.classList.add("read")
       readBtn.textContent = "Read";
     }
 
