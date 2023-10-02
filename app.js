@@ -77,6 +77,14 @@ function enableSubmit(){
   submitBtn.disabled = !isValid;
 }
 
+function updatePage() {
+  const cards = cardWrapper.querySelectorAll(".card");
+
+  for (let i = 0; i < myLibrary.length; i++) {
+    cards[i].id = i;
+  }
+}
+
 addBookBtn.addEventListener("click", () => {
   bookDialog.showModal();
 });
@@ -127,12 +135,7 @@ cardWrapper.addEventListener("click", function(event) {
       const index = divCard.id;
       
       myLibrary.splice(index, 1);
-      divCard.remove()
-      
+      divCard.remove();    
       updatePage();
   }
 })
-
-function updatePage() {
-  // update every div id after removal
-}
