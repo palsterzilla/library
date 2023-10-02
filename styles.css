@@ -1,29 +1,68 @@
-body {
-  font-size: 16px;
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+html {
+  font-family: 'Roboto', sans-serif;
+  font-size: 18px;
 }
 
-body, p {
+body {
+  background-color: #FAF9F6;
+}
+
+body, p, h1 {
   margin: 0;
   padding: 0;
 }
 
-.container {
-  display: flex;
-  flex-direction: column;
-}
-
+/* header section */
 .header {
-  display: flex;
+  background-color: #fff;
+  height: 8vh;
 }
 
+.header .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  margin: 0 auto;
+  max-width: 1200px;
+}
+
+.container h1 {
+  font-weight: bold;
+}
+
+.container button {
+  width:4rem;
+  height:2.5rem;
+  border:none;
+  border-radius:8px;
+  font-size:17px;
+  font-weight:600;
+  color:#000;
+  background-color:#e9ecf0;
+  cursor:pointer;
+}
+
+.container button:hover {
+  background-color:#e9ecf0d1;
+}
+
+
+/* content section */
 .content {
-  background-color: #FAF9F6;
+  padding: 20px 0;
+  margin: 20px auto 0;
+  max-width: 1200px;
+  text-align: center;
 }
 
 .wrapper {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   gap: 1.5em;
+  margin-top: 40px;
 }
 
 .wrapper .card {
@@ -33,6 +72,8 @@ body, p {
   gap: 1em;
 }
 
+
+/* dialog section */
 #addDialog {
   padding: 0;
 }
