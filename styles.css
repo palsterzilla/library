@@ -75,7 +75,7 @@ button#showDialog:hover {
 .content .wrapper {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: 1.5em;
+  gap: 2em;
   margin-top: 40px;
 }
 
@@ -84,6 +84,32 @@ button#showDialog:hover {
   display: flex;
   flex-direction: column;
   gap: 1em;
+
+  padding: 1em;
+  font-weight: bold;
+  border-radius: 8px;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;;
+  font-size: larger;
+}
+
+.card button {
+  height: 2.5em;
+  font-size: large;
+  font-weight: bold;
+  border-radius: 10px;
+  border: none;
+}
+
+.card button:hover {
+  background-image: linear-gradient(rgb(0 0 0/10%) 0 0);
+}
+
+.card button.read {
+  background-color: lightgreen
+}
+
+.card button.unread {
+  background-color: lightcoral
 }
 
 
