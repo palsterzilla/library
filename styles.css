@@ -9,7 +9,7 @@ body {
   background-color: #FAF9F6;
 }
 
-body, p, h1 {
+body, p, h1, h2 {
   margin: 0;
   padding: 0;
 }
@@ -115,8 +115,71 @@ button#showDialog:hover {
 /* dialog section */
 #addDialog {
   padding: 0;
+  border: none;
+  border-radius: 8px;
 }
 
 #preventClose {
   padding: 1em;
+  background-color: #FAF9F6;
+  background-image: linear-gradient(rgb(0 0 0/5%) 0 0);
 }
+
+form {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 1.5em;
+}
+
+form .isRead {
+  display: flex;
+  gap: 0.5em;
+}
+
+input {
+  font-size: large;
+}
+
+input.required {
+  padding: 0.8em;
+  border: none;
+  border-radius: 8px;
+}
+
+input.required:focus {
+  outline: none;
+}
+
+input#readCheck {
+  transform: scale(1.5);
+}
+
+label {
+  font-size: 1.1em;
+}
+
+button#submitBtn {
+  background-color: lightgreen;
+  color: #000;
+  height: 2.5em;
+  width: 100%;
+  font-size: large;
+  font-weight: bold;
+  border-radius: 10px;
+  border: none;
+}
+
+button#submitBtn:hover {
+  background-image: linear-gradient(rgb(0 0 0/10%) 0 0);
+}
+
+/* masking for later */
+/* #page-mask {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  top: 0;
+  background-color: rgba(0,0,0,0.6);
+} */
