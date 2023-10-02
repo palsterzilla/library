@@ -41,12 +41,11 @@ body, p, h1 {
   font-size:17px;
   font-weight:600;
   color:#000;
-  background-color:#e9ecf0;
   cursor:pointer;
 }
 
 .container button:hover {
-  background-color:#e9ecf0d1;
+  background-image: linear-gradient(rgb(0 0 0/10%) 0 0);
 }
 
 
@@ -69,7 +68,7 @@ button#showDialog {
 }
 
 button#showDialog:hover {
-  background-color:#e9ecf0d1;
+  background-image: linear-gradient(rgb(0 0 0/10%) 0 0);
 }
 
 .content .wrapper {
