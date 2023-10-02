@@ -58,7 +58,21 @@ body, p, h1 {
   text-align: center;
 }
 
-.wrapper {
+button#showDialog {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 1em;
+  height: 2.5em;
+  border-radius:8px;
+}
+
+button#showDialog:hover {
+  background-color:#e9ecf0d1;
+}
+
+.content .wrapper {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   gap: 1.5em;
@@ -66,7 +80,7 @@ body, p, h1 {
 }
 
 .wrapper .card {
-  background-color: seashell;
+  background-color: #fff;
   display: flex;
   flex-direction: column;
   gap: 1em;
