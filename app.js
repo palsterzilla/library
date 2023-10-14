@@ -1,3 +1,34 @@
+class Book {
+  constructor(
+    title = 'Unknown',
+    author = 'Unknown',
+    pages = '0',
+    isRead = false
+  ) {
+    this.title = title;
+    this.author = author;
+    this.pages = pages;
+    this.isRead = isRead;
+  }
+}
+
+class Library {
+  constructor() {
+    this.books = []
+  }
+
+  addBook(newBook) {
+    this.books.push(newBook)
+  }
+
+  toggleRead() {
+    this.readCheck = !this.readCheck;
+  }
+}
+
+const myLibrary = new Library();
+
+// UI
 const addBookBtn = document.getElementById("showDialog");
 const preventClose = document.getElementById("preventClose");
 const bookDialog = document.getElementById("addDialog");
@@ -9,17 +40,15 @@ const inputAuthor = document.getElementById("author");
 const inputPages = document.getElementById("pages");
 const readCheck = document.getElementById("readCheck");
 
-const myLibrary = [];
-
-function Book(title, author, pages, readCheck) {
-  this.title = title;
-  this.author = author;
-  this.pages = pages;
-  this.readCheck = readCheck;
-  this.toggleRead = function() {
-    this.readCheck = !this.readCheck;
-  };
-}
+// function Book(title, author, pages, readCheck) {
+//   this.title = title;
+//   this.author = author;
+//   this.pages = pages;
+//   this.readCheck = readCheck;
+//   this.toggleRead = function() {
+//     this.readCheck = !this.readCheck;
+//   };
+// }
 
 function addBookToLibrary() {
   const div = document.createElement("div");
@@ -29,7 +58,7 @@ function addBookToLibrary() {
   const btnRead = document.createElement("BUTTON");
   const btnRemove = document.createElement("BUTTON");
 
-  myLibrary.push(
+  myLibrary.addBook(
     new Book(
       inputTitle.value,
       inputAuthor.value,
@@ -38,12 +67,12 @@ function addBookToLibrary() {
     )
   );
 
-  for (let i = 0; i < myLibrary.length; i++) {
+  for (let i = 0; i < myLibrary.books.length; i++) {
     div.setAttribute("class", "card");
     div.setAttribute("id", i);
-    paraTitle.textContent = `"${myLibrary[i].title}"`;
-    paraAuthor.textContent = myLibrary[i].author;
-    paraPages.textContent = `${myLibrary[i].pages} pages`;
+    paraTitle.textContent = `"${myLibrary.books[i].title}"`;
+    paraAuthor.textContent = myLibrary.books[i].author;
+    paraPages.textContent = `${myLibrary.books[i].pages} pages`;
 
     if (readCheck.checked) {
       btnRead.textContent = "Read";
@@ -82,7 +111,7 @@ function enableSubmit(){
 function updatePage() {
   const cards = cardWrapper.querySelectorAll(".card");
 
-  for (let i = 0; i < myLibrary.length; i++) {
+  for (let i = 0; i < myLibrary.books.length; i++) {
     cards[i].id = i;
   }
 }
@@ -124,24 +153,25 @@ cardWrapper.addEventListener("click", function(event) {
 
   if (readBtn) {
     const index = divCard.id;
-    
-    myLibrary[index].toggleRead();
-    
+        
     if (readBtn.textContent == "Read") {
       readBtn.classList.remove("read")
       readBtn.classList.add("unread")
       readBtn.textContent = "Not read";
+      myLibrary.books[index].isRead = false;
+
     } else {
       readBtn.classList.remove("unread")
       readBtn.classList.add("read")
       readBtn.textContent = "Read";
+      myLibrary.books[index].isRead = true;
     }
 
   } else if (removeBtn) {
       const index = divCard.id;
       
-      myLibrary.splice(index, 1);
-      divCard.remove();    
+      myLibrary.books.splice(index, 1);
+      divCard.remove();
       updatePage();
   }
 })
