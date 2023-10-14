@@ -36,7 +36,7 @@ const inputAuthor = document.getElementById("author");
 const inputPages = document.getElementById("pages");
 const readCheck = document.getElementById("readCheck");
 
-function addBookToLibrary() {
+const addBookToLibrary = () => {
   const newBook = () => {
     const title = inputTitle.value;
     const author = inputAuthor.value;
