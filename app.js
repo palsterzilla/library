@@ -28,9 +28,9 @@ const myLibrary = new Library();
 const addBookBtn = document.getElementById("showDialog");
 const preventClose = document.getElementById("preventClose");
 const bookDialog = document.getElementById("addDialog");
-const submitBtn = bookDialog.querySelector("#submitBtn");
+const submitBtn = document.getElementById("submitBtn");
 
-const cardWrapper = document.querySelector(".wrapper");
+const cardWrapper = document.getElementById("wrapper");
 const inputTitle = document.getElementById("title");
 const inputAuthor = document.getElementById("author");
 const inputPages = document.getElementById("pages");
