@@ -44,14 +44,15 @@ function addBookToLibrary() {
   const btnRead = document.createElement("BUTTON");
   const btnRemove = document.createElement("BUTTON");
 
-  myLibrary.addBook(
-    new Book(
-      inputTitle.value,
-      inputAuthor.value,
-      inputPages.value,
-      readCheck.checked,
-    )
-  );
+  const newBook = () => {
+    const title = inputTitle.value;
+    const author = inputAuthor.value;
+    const pages = inputPages.value;
+    const isRead = readCheck.checked;
+    return new Book(title, author, pages, isRead);
+  }
+  
+  myLibrary.addBook(newBook())
 
   for (let i = 0; i < myLibrary.books.length; i++) {
     div.setAttribute("class", "card");
