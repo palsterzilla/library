@@ -37,13 +37,6 @@ const inputPages = document.getElementById("pages");
 const readCheck = document.getElementById("readCheck");
 
 function addBookToLibrary() {
-  const div = document.createElement("div");
-  const paraTitle = document.createElement("p");
-  const paraAuthor = document.createElement("p");
-  const paraPages = document.createElement("p");
-  const btnRead = document.createElement("BUTTON");
-  const btnRemove = document.createElement("BUTTON");
-
   const newBook = () => {
     const title = inputTitle.value;
     const author = inputAuthor.value;
@@ -53,32 +46,52 @@ function addBookToLibrary() {
   }
   
   myLibrary.addBook(newBook())
+}
 
-  for (let i = 0; i < myLibrary.books.length; i++) {
-    div.setAttribute("class", "card");
-    div.setAttribute("id", i);
-    paraTitle.textContent = `"${myLibrary.books[i].title}"`;
-    paraAuthor.textContent = myLibrary.books[i].author;
-    paraPages.textContent = `${myLibrary.books[i].pages} pages`;
-
-    if (readCheck.checked) {
-      btnRead.textContent = "Read";
-      btnRead.setAttribute("class", "read")
-    } else {
-      btnRead.textContent = "Not read";
-      btnRead.setAttribute("class", "unread")
-    }
-
-    btnRead.setAttribute("type", "button");
-    btnRead.setAttribute("id", "readBtn");
-
-    btnRemove.textContent = "Remove";
-    btnRemove.setAttribute("type", "button");
-    btnRemove.setAttribute("id", "removeBtn");
-    
-    cardWrapper.append(div);
-    div.append(paraTitle, paraAuthor, paraPages, btnRead, btnRemove);
+const updateBooksGrid = () => {
+  resetBooksGrid()
+  for (let book of myLibrary.books) {
+    createBookCard(book)
   }
+}
+
+// TODO create toggleRead() and remove() as on ln 141
+const createBookCard = (book) => {
+  const bookCard = document.createElement("div");
+  const title = document.createElement("p");
+  const author = document.createElement("p");
+  const pages = document.createElement("p");
+  const btnRead = document.createElement("BUTTON");
+  const btnRemove = document.createElement("BUTTON");
+  
+  bookCard.setAttribute("class", "card");
+  // bookCard.setAttribute("id", i);
+  // bookCard.setAttribute("data-card", "");
+  title.textContent = `"${book.title}"`;
+  author.textContent = book.author;
+  pages.textContent = `${book.pages} pages`;
+
+  if (book.isRead) {
+    btnRead.textContent = "Read";
+    btnRead.setAttribute("class", "read")
+  } else {
+    btnRead.textContent = "Not read";
+    btnRead.setAttribute("class", "unread")
+  }
+
+  btnRead.setAttribute("type", "button");
+  btnRead.setAttribute("id", "readBtn");
+
+  btnRemove.textContent = "Remove";
+  btnRemove.setAttribute("type", "button");
+  btnRemove.setAttribute("id", "removeBtn");
+  
+  cardWrapper.append(bookCard);
+  bookCard.append(title, author, pages, btnRead, btnRemove);
+}
+
+const resetBooksGrid = () => {
+  cardWrapper.innerHTML = ""
 }
 
 function enableSubmit(){
@@ -93,14 +106,6 @@ function enableSubmit(){
     }
   }
   submitBtn.disabled = !isValid;
-}
-
-function updatePage() {
-  const cards = cardWrapper.querySelectorAll(".card");
-
-  for (let i = 0; i < myLibrary.books.length; i++) {
-    cards[i].id = i;
-  }
 }
 
 addBookBtn.addEventListener("click", () => {
@@ -126,6 +131,7 @@ bookDialog.addEventListener("close", () => {
 submitBtn.addEventListener("click", (event) => {
   event.preventDefault();
   addBookToLibrary();
+  updateBooksGrid();
   bookDialog.close();
 });
 
@@ -133,6 +139,7 @@ inputTitle.addEventListener("keyup", enableSubmit);
 inputAuthor.addEventListener("keyup", enableSubmit);
 inputPages.addEventListener("change", enableSubmit);
 
+// not used, keep for now
 cardWrapper.addEventListener("click", function(event) {
   const readBtn = event.target.closest("#readBtn");
   const removeBtn = event.target.closest("#removeBtn");
@@ -159,6 +166,7 @@ cardWrapper.addEventListener("click", function(event) {
       
       myLibrary.books.splice(index, 1);
       divCard.remove();
-      updatePage();
+
+      // updatePage();
   }
 })
