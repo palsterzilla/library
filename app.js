@@ -20,10 +20,6 @@ class Library {
   addBook(newBook) {
     this.books.push(newBook)
   }
-
-  toggleRead() {
-    this.readCheck = !this.readCheck;
-  }
 }
 
 const myLibrary = new Library();
@@ -39,16 +35,6 @@ const inputTitle = document.getElementById("title");
 const inputAuthor = document.getElementById("author");
 const inputPages = document.getElementById("pages");
 const readCheck = document.getElementById("readCheck");
-
-// function Book(title, author, pages, readCheck) {
-//   this.title = title;
-//   this.author = author;
-//   this.pages = pages;
-//   this.readCheck = readCheck;
-//   this.toggleRead = function() {
-//     this.readCheck = !this.readCheck;
-//   };
-// }
 
 function addBookToLibrary() {
   const div = document.createElement("div");
