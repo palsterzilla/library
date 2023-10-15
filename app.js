@@ -134,25 +134,18 @@ const removeBook = (e) => {
   updateBooksGrid();
 }
 
-addBookBtn.addEventListener("click", () => {
-  bookDialog.showModal();
-});
-
-bookDialog.addEventListener("click", () => {
-  bookDialog.close();
-});
-
-preventClose.addEventListener('click', (e) => {
-  e.stopPropagation();
-});
-
-bookDialog.addEventListener("close", () => {
+const closeBookDialog = () => {
   inputTitle.value = "";
   inputAuthor.value = "";
   inputPages.value = "";
   readCheck.checked = false;
   duplicatedMsg.textContent = "";
   duplicatedMsg.classList.remove("active");
-});
+  bookDialog.close();
+}
 
-addBookForm.addEventListener("submit", addBookToLibrary)
+addBookBtn.addEventListener("click", () => bookDialog.showModal());
+preventClose.addEventListener('click', (e) => e.stopPropagation());
+bookDialog.addEventListener("click", closeBookDialog);
+bookDialog.addEventListener("close", closeBookDialog);
+addBookForm.addEventListener("submit", addBookToLibrary);
