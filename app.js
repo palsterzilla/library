@@ -20,6 +20,10 @@ class Library {
   addBook(newBook) {
     this.books.push(newBook)
   }
+
+  getBook(title) {
+    return this.books.find((book) => book.title === title)
+  }
 }
 
 const myLibrary = new Library();
@@ -55,7 +59,7 @@ const updateBooksGrid = () => {
   }
 }
 
-// TODO create toggleRead() and remove() as on ln 141
+// TODO create remove() as on ln 154
 const createBookCard = (book) => {
   const bookCard = document.createElement("div");
   const title = document.createElement("p");
@@ -65,22 +69,21 @@ const createBookCard = (book) => {
   const btnRemove = document.createElement("BUTTON");
   
   bookCard.setAttribute("class", "card");
-  // bookCard.setAttribute("id", i);
-  // bookCard.setAttribute("data-card", "");
   title.textContent = `"${book.title}"`;
   author.textContent = book.author;
   pages.textContent = `${book.pages} pages`;
 
   if (book.isRead) {
     btnRead.textContent = "Read";
-    btnRead.setAttribute("class", "read")
+    btnRead.setAttribute("class", "read");
   } else {
     btnRead.textContent = "Not read";
-    btnRead.setAttribute("class", "unread")
+    btnRead.setAttribute("class", "unread");
   }
 
   btnRead.setAttribute("type", "button");
   btnRead.setAttribute("id", "readBtn");
+  btnRead.addEventListener("click", toggleRead);
 
   btnRemove.textContent = "Remove";
   btnRemove.setAttribute("type", "button");
@@ -92,6 +95,14 @@ const createBookCard = (book) => {
 
 const resetBooksGrid = () => {
   cardWrapper.innerHTML = ""
+}
+
+const toggleRead = (e) => {
+  const title = e.target.parentNode.firstChild.innerText.replaceAll('"', '');
+  const book = myLibrary.getBook(title);
+  
+  book.isRead = !book.isRead;
+  updateBooksGrid();
 }
 
 function enableSubmit(){
@@ -140,33 +151,33 @@ inputAuthor.addEventListener("keyup", enableSubmit);
 inputPages.addEventListener("change", enableSubmit);
 
 // not used, keep for now
-cardWrapper.addEventListener("click", function(event) {
-  const readBtn = event.target.closest("#readBtn");
-  const removeBtn = event.target.closest("#removeBtn");
-  const divCard = event.target.closest(".card");
+// cardWrapper.addEventListener("click", function(event) {
+//   const readBtn = event.target.closest("#readBtn");
+//   const removeBtn = event.target.closest("#removeBtn");
+//   const divCard = event.target.closest(".card");
 
-  if (readBtn) {
-    const index = divCard.id;
+//   if (readBtn) {
+//     const index = divCard.id;
         
-    if (readBtn.textContent == "Read") {
-      readBtn.classList.remove("read")
-      readBtn.classList.add("unread")
-      readBtn.textContent = "Not read";
-      myLibrary.books[index].isRead = false;
+//     if (readBtn.textContent == "Read") {
+//       readBtn.classList.remove("read")
+//       readBtn.classList.add("unread")
+//       readBtn.textContent = "Not read";
+//       myLibrary.books[index].isRead = false;
 
-    } else {
-      readBtn.classList.remove("unread")
-      readBtn.classList.add("read")
-      readBtn.textContent = "Read";
-      myLibrary.books[index].isRead = true;
-    }
+//     } else {
+//       readBtn.classList.remove("unread")
+//       readBtn.classList.add("read")
+//       readBtn.textContent = "Read";
+//       myLibrary.books[index].isRead = true;
+//     }
 
-  } else if (removeBtn) {
-      const index = divCard.id;
+//   } else if (removeBtn) {
+//       const index = divCard.id;
       
-      myLibrary.books.splice(index, 1);
-      divCard.remove();
+//       myLibrary.books.splice(index, 1);
+//       divCard.remove();
 
-      // updatePage();
-  }
-})
+//       updatePage();
+//   }
+// })
