@@ -50,8 +50,8 @@ const inputAuthor = document.getElementById("author");
 const inputPages = document.getElementById("pages");
 const readCheck = document.getElementById("readCheck");
 
-const addBookToLibrary = (event) => {
-  event.preventDefault();
+const addBookToLibrary = (e) => {
+  e.preventDefault();
   
   const newBook = () => {
     const title = inputTitle.value;
@@ -142,8 +142,8 @@ bookDialog.addEventListener("click", () => {
   bookDialog.close();
 });
 
-preventClose.addEventListener('click', (event) => {
-  event.stopPropagation();
+preventClose.addEventListener('click', (e) => {
+  e.stopPropagation();
 });
 
 bookDialog.addEventListener("close", () => {
