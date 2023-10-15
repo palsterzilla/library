@@ -24,6 +24,10 @@ class Library {
   getBook(title) {
     return this.books.find((book) => book.title === title)
   }
+
+  removeBook(title) {
+    this.books = this.books.filter((book) => book.title !== title)
+  }
 }
 
 const myLibrary = new Library();
@@ -59,7 +63,6 @@ const updateBooksGrid = () => {
   }
 }
 
-// TODO create remove() as on ln 154
 const createBookCard = (book) => {
   const bookCard = document.createElement("div");
   const title = document.createElement("p");
@@ -84,10 +87,11 @@ const createBookCard = (book) => {
   btnRead.setAttribute("type", "button");
   btnRead.setAttribute("id", "readBtn");
   btnRead.addEventListener("click", toggleRead);
-
+  
   btnRemove.textContent = "Remove";
   btnRemove.setAttribute("type", "button");
   btnRemove.setAttribute("id", "removeBtn");
+  btnRemove.addEventListener("click", removeBook);
   
   cardWrapper.append(bookCard);
   bookCard.append(title, author, pages, btnRead, btnRemove);
@@ -102,6 +106,13 @@ const toggleRead = (e) => {
   const book = myLibrary.getBook(title);
   
   book.isRead = !book.isRead;
+  updateBooksGrid();
+}
+
+const removeBook = (e) => {
+  const title = e.target.parentNode.firstChild.innerText.replaceAll('"', '');
+  
+  myLibrary.removeBook(title);
   updateBooksGrid();
 }
 
@@ -150,34 +161,3 @@ inputTitle.addEventListener("keyup", enableSubmit);
 inputAuthor.addEventListener("keyup", enableSubmit);
 inputPages.addEventListener("change", enableSubmit);
 
-// not used, keep for now
-// cardWrapper.addEventListener("click", function(event) {
-//   const readBtn = event.target.closest("#readBtn");
-//   const removeBtn = event.target.closest("#removeBtn");
-//   const divCard = event.target.closest(".card");
-
-//   if (readBtn) {
-//     const index = divCard.id;
-        
-//     if (readBtn.textContent == "Read") {
-//       readBtn.classList.remove("read")
-//       readBtn.classList.add("unread")
-//       readBtn.textContent = "Not read";
-//       myLibrary.books[index].isRead = false;
-
-//     } else {
-//       readBtn.classList.remove("unread")
-//       readBtn.classList.add("read")
-//       readBtn.textContent = "Read";
-//       myLibrary.books[index].isRead = true;
-//     }
-
-//   } else if (removeBtn) {
-//       const index = divCard.id;
-      
-//       myLibrary.books.splice(index, 1);
-//       divCard.remove();
-
-//       updatePage();
-//   }
-// })
