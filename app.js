@@ -36,7 +36,7 @@ const myLibrary = new Library();
 const addBookBtn = document.getElementById("showDialog");
 const preventClose = document.getElementById("preventClose");
 const bookDialog = document.getElementById("addDialog");
-const submitBtn = document.getElementById("submitBtn");
+const addBookForm = document.getElementById("book-form");
 
 const cardWrapper = document.getElementById("wrapper");
 const inputTitle = document.getElementById("title");
@@ -116,20 +116,6 @@ const removeBook = (e) => {
   updateBooksGrid();
 }
 
-function enableSubmit(){
-  const inputs = document.getElementsByClassName("required");
-
-  let isValid = true;
-  for (let i = 0; i < inputs.length; i++){
-    const changedInput = inputs[i];
-    if (changedInput.value.trim() === "" || changedInput.value === null){
-      isValid = false;
-      break;
-    }
-  }
-  submitBtn.disabled = !isValid;
-}
-
 addBookBtn.addEventListener("click", () => {
   bookDialog.showModal();
 });
@@ -147,17 +133,11 @@ bookDialog.addEventListener("close", () => {
   inputAuthor.value = "";
   inputPages.value = "";
   readCheck.checked = false;
-  submitBtn.disabled = true;
 });
 
-submitBtn.addEventListener("click", (event) => {
+addBookForm.addEventListener("submit", (event) => {
   event.preventDefault();
   addBookToLibrary();
   updateBooksGrid();
   bookDialog.close();
-});
-
-inputTitle.addEventListener("keyup", enableSubmit);
-inputAuthor.addEventListener("keyup", enableSubmit);
-inputPages.addEventListener("change", enableSubmit);
-
+})
