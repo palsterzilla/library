@@ -138,6 +138,16 @@ form .isRead {
   gap: 0.5em;
 }
 
+.duplicated-msg {
+  display: none;
+}
+
+.duplicated-msg.active {
+  display: block;
+  color: red;
+  margin-top: -1em;
+}
+
 input {
   font-size: large;
 }

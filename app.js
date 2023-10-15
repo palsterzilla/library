@@ -18,7 +18,9 @@ class Library {
   }
 
   addBook(newBook) {
-    this.books.push(newBook)
+    if (!this.isDuplicate(newBook)) {
+      this.books.push(newBook)
+    }
   }
 
   getBook(title) {
@@ -27,6 +29,10 @@ class Library {
 
   removeBook(title) {
     this.books = this.books.filter((book) => book.title !== title)
+  }
+
+  isDuplicate(newBook) {
+    return this.books.some((book) => book.title === newBook.title)
   }
 }
 
@@ -37,14 +43,16 @@ const addBookBtn = document.getElementById("showDialog");
 const preventClose = document.getElementById("preventClose");
 const bookDialog = document.getElementById("addDialog");
 const addBookForm = document.getElementById("book-form");
-
 const cardWrapper = document.getElementById("wrapper");
+const duplicatedMsg = document.getElementById("duplicatedMsg");
 const inputTitle = document.getElementById("title");
 const inputAuthor = document.getElementById("author");
 const inputPages = document.getElementById("pages");
 const readCheck = document.getElementById("readCheck");
 
-const addBookToLibrary = () => {
+const addBookToLibrary = (event) => {
+  event.preventDefault();
+  
   const newBook = () => {
     const title = inputTitle.value;
     const author = inputAuthor.value;
@@ -53,7 +61,17 @@ const addBookToLibrary = () => {
     return new Book(title, author, pages, isRead);
   }
   
-  myLibrary.addBook(newBook())
+  if (myLibrary.isDuplicate(newBook())) {
+    duplicatedMsg.textContent = "This book already exist!";
+    duplicatedMsg.classList.add("active")
+    return;
+
+  } else {
+    myLibrary.addBook(newBook())
+    updateBooksGrid();
+    bookDialog.close();
+  }
+  
 }
 
 const updateBooksGrid = () => {
@@ -133,11 +151,8 @@ bookDialog.addEventListener("close", () => {
   inputAuthor.value = "";
   inputPages.value = "";
   readCheck.checked = false;
+  duplicatedMsg.textContent = "";
+  duplicatedMsg.classList.remove("active");
 });
 
-addBookForm.addEventListener("submit", (event) => {
-  event.preventDefault();
-  addBookToLibrary();
-  updateBooksGrid();
-  bookDialog.close();
-})
+addBookForm.addEventListener("submit", addBookToLibrary)
