@@ -11,16 +11,16 @@
     <div class="header">
       <div class="container">
         <h1>library</h1>
-        <button type="button">Log in</button>
+        <button type="button" class="login">Log in</button>
       </div>
     </div>
     <div class="content">
-      <button type="button" id="showDialog">+ Add Book</button>
+      <button type="button" class="show-dialog" id="showDialog">+ Add Book</button>
       <div class="wrapper" id="wrapper"></div>
     </div>
-    <dialog id="addDialog">
-      <div id="preventClose">
-        <form id="book-form">
+    <dialog class="add-dialog" id="addDialog">
+      <div class="prevent-close" id="preventClose">
+        <form class="book-form" id="book-form">
           <h2>Add new book</h2>
           <input class="required" id="title" type="text" placeholder="Title" max="100" required>
           <p class="duplicated-msg" id="duplicatedMsg"></p>
@@ -28,9 +28,9 @@
           <input class="required" id="pages" type="number" placeholder="Pages" min="1" required>
           <div class="isRead">
             <label for="readCheck">Have you read it?</label>
-            <input type="checkbox" id="readCheck">
+            <input type="checkbox" class="read-check" id="readCheck">
           </div>
-          <button type="submit" id="submitBtn">Submit</button>
+          <button type="submit" class="submit-btn" id="submitBtn">Submit</button>
         </form>
       </div>
     </dialog>

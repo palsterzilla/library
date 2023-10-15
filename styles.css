@@ -21,7 +21,7 @@ body, p, h1, h2 {
   box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
 }
 
-.header .container {
+.container {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -34,7 +34,7 @@ body, p, h1, h2 {
   font-weight: bold;
 }
 
-.container button {
+button.login {
   width:4rem;
   height:2.5rem;
   border:none;
@@ -45,7 +45,7 @@ body, p, h1, h2 {
   cursor:pointer;
 }
 
-.container button:hover {
+button.login:hover {
   background-image: linear-gradient(rgb(0 0 0/10%) 0 0);
 }
 
@@ -58,7 +58,7 @@ body, p, h1, h2 {
   text-align: center;
 }
 
-button#showDialog {
+button.show-dialog {
   background-color: transparent;
   border: none;
   cursor: pointer;
@@ -68,18 +68,19 @@ button#showDialog {
   border-radius:8px;
 }
 
-button#showDialog:hover {
+button.show-dialog:hover {
   background-image: linear-gradient(rgb(0 0 0/10%) 0 0);
 }
 
-.content .wrapper {
+/* card grid */
+.wrapper {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   gap: 2em;
   margin-top: 40px;
 }
 
-.wrapper .card {
+.card {
   background-color: #fff;
   display: flex;
   flex-direction: column;
@@ -114,26 +115,27 @@ button#showDialog:hover {
 
 
 /* dialog section */
-#addDialog {
+.add-dialog {
   padding: 0;
   border: none;
   border-radius: 8px;
 }
 
-#preventClose {
+.prevent-close {
   padding: 1em;
   background-color: #FAF9F6;
   background-image: linear-gradient(rgb(0 0 0/5%) 0 0);
 }
 
-form {
+/* form */
+form.book-form {
   display: flex;
   align-items: center;
   flex-direction: column;
   gap: 1.5em;
 }
 
-form .isRead {
+.isRead {
   display: flex;
   gap: 0.5em;
 }
@@ -162,7 +164,7 @@ input.required:focus {
   outline: none;
 }
 
-input#readCheck {
+input.read-check {
   transform: scale(1.5);
 }
 
@@ -170,7 +172,7 @@ label {
   font-size: 1.1em;
 }
 
-button#submitBtn {
+button.submit-btn {
   background-color: lightgreen;
   color: #000;
   height: 2.5em;
@@ -181,7 +183,7 @@ button#submitBtn {
   border: none;
 }
 
-button#submitBtn:hover {
+button.submit-btn:hover {
   background-image: linear-gradient(rgb(0 0 0/10%) 0 0);
 }
 
